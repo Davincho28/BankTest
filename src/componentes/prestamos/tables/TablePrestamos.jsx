@@ -20,7 +20,7 @@ const TablePrestamos = ({ storage }) => {
           </thead>
           <tbody>
             {/* Si Hay mas de un elemento */}
-            {storage.length >= 1 &&
+            {storage.length > 0 &&
               storage.map(({ id, montoSolicitado, estado }) => (
                 <tr
                   className="border-b border-gray-200 hover:bg-gray-50"
