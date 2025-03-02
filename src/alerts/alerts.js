@@ -16,7 +16,21 @@ export const alerts = () => {
       showConfirmButton,
     });
   };
+
+  //Modal de confirmacion
+  const confirmModalAlert = async ({ title }) => {
+    return Swal.fire({
+      title,
+      showDenyButton: true,
+      confirmButtonText: "SI",
+      denyButtonText: "NO",
+    }).then((result) => {
+      return result.isConfirmed;
+    });
+  };
+
   return {
     modalAlert,
+    confirmModalAlert,
   };
 };

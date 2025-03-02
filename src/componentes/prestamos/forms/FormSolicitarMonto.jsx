@@ -10,12 +10,14 @@ const FormSolicitarMonto = ({ actualizarTabla, setActualizarTabla }) => {
     event.preventDefault();
     const valueMonto = onsubmit();
     const storageMonto = localStorage.getItem("monto");
+    const email=localStorage.getItem("email")
 
     //Crear arreglo de objetos para local storage
     const objData = {
       id: crypto.randomUUID(),
       estado: "pendiente",
       montoSolicitado: valueMonto.monto,
+      email:email,
     };
 
     //Pequeña espera
