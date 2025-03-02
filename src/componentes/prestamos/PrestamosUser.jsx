@@ -8,9 +8,8 @@ const PrestamosUser = () => {
   const [actualizarTabla, setActualizarTabla] = useState(0);
 
   useEffect(() => {
-    console.log("Se actualizo la tabla")
     const data= JSON.parse(localStorage.getItem("monto"))
-    data&&setstorage(data)
+    data&&setstorage(data.reverse())
   }, [actualizarTabla])
   
 

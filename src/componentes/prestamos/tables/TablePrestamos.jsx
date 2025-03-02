@@ -1,7 +1,6 @@
 import React from "react";
 
 const TablePrestamos = ({ storage }) => {
-
   return (
     <div className="bg-white p-6 rounded-2xl shadow-lg">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">
@@ -27,7 +26,17 @@ const TablePrestamos = ({ storage }) => {
                   <td className="px-6 py-4 font-medium text-gray-900">
                     💵 ${montoSolicitado}
                   </td>
-                  <td className="px-6 py-4 text-green-600">{estado}</td>
+                  <td
+                    className={`px-6 py-4 ${
+                      estado === "Aprobado"
+                        ? "text-green-600"
+                        : estado === "Rechazado"
+                        ? "text-red-600"
+                        : "text-black"
+                    }`}
+                  >
+                    {estado}
+                  </td>
                 </tr>
               ))}
           </tbody>

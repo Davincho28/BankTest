@@ -11,7 +11,7 @@ const PrestamosAdmin = () => {
     if (!storage) {
       return;
     }
-    setdata(storage);
+    setdata(storage.reverse());
   }, [actualizarTabla]);
 
   const gestionSolicitud = async ({ accion, id }) => {
@@ -37,7 +37,6 @@ const PrestamosAdmin = () => {
       //proceso de solicitud
       //Encontrar la solicitud
       const newData = data.map((solicitud) => {
-        console.log(solicitud);
         //Cambiar el estado de la solicitud
         if (solicitud.id == id) {
           solicitud.estado = accion;
@@ -100,7 +99,7 @@ const PrestamosAdmin = () => {
                 ${
                   estado === "Aprobado"
                     ? "bg-green-800"
-                    : estado === "Pendiente"
+                    : estado === "pendiente"
                     ? "bg-yellow-800"
                     : "bg-red-800"
                 }`}
