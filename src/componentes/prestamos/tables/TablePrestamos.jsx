@@ -1,9 +1,6 @@
 import React from "react";
 
 const TablePrestamos = ({ storage }) => {
-  console.log("storage");
-  console.log(storage);
-
   return (
     <div className="bg-white p-6 rounded-2xl shadow-lg">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">

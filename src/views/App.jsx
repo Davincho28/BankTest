@@ -1,39 +1,57 @@
 import { useNavigate } from "react-router-dom";
 import { hookForm } from "../hooks/hooksforms";
 import { alerts } from "../alerts/alerts";
+import { useEffect } from "react";
 
 function App() {
-  const { inputChange,onsubmit } = hookForm();
-   //alertas
-   const { modalAlert } = alerts();
-   //Navigar a la pestaña de inicio
-   const navigate = useNavigate();
- 
-   //Validacion de usuarios traias de api o lo que sea
-   const users = JSON.stringify([
-     {
-       email: "usuario@test.com",
-       password: "123",
-     },
-     {
-       email: "admin@test.com",
-       password: "123",
-     },
-   ]);
- 
+  const { inputChange, onsubmit } = hookForm();
+  //alertas
+  const { modalAlert } = alerts();
+  //Navigar a la pestaña de inicio
+  const navigate = useNavigate();
+
+  //Validacion de usuarios traias de api o lo que sea
+  const users = JSON.stringify([
+    {
+      email: "usuario@test.com",
+      password: "123",
+      isAdmin: false,
+    },
+    {
+      email: "admin@test.com",
+      password: "123",
+      isAdmin: true,
+    },
+  ]);
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      navigate("/home");
+    }
+  }, []);
 
   //Diligenciar formulario
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const { email, password } = onsubmit();
     const dataUsers = JSON.parse(users);
     const acces = dataUsers.find(
       (user) => email == user.email && password == user.password
     );
 
+    modalAlert({
+      title: "Espera porfavor",
+      text: "Estamos validando sus datos",
+      icon: "info",
+      timer: 5000,
+    });
+    //Pequeña espera
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    //Si Tiene acceso
     if (acces) {
       localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
+      localStorage.setItem("isAdmin", acces.isAdmin);
       navigate("/home");
     } else {
       modalAlert({
