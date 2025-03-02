@@ -5,7 +5,7 @@ export const hookForm = () => {
   const [inputValue, setInputValue] = useState({});
   //funcion para capturar valores de los inputs
   const inputChange = ({ target }) => {
-    const { value, id, required } = target;
+    const { value, id } = target;
     setInputValue({ ...inputValue, [id]: value })
   };
 

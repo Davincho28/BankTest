@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [emailUser, setEmailUser] = useState("");
   const [isAdmin, setisAdmin] = useState(false);
-  const [actualizarTabla, setActualizarTabla] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,10 +32,7 @@ const Home = () => {
       <MessageWelcome email={emailUser} />
       {/*Vista NO es administrador */}
       {isAdmin == "false" && (
-        <PrestamosUser
-          actualizarTabla={actualizarTabla}
-          setActualizarTabla={setActualizarTabla}
-        />
+        <PrestamosUser/>
       )}
       {/* Vista de SI es administrador */}
       {isAdmin == "true" && <PrestamosAdmin />}
